@@ -1,0 +1,256 @@
+\documentclass[t]{beamer}
+
+\usetheme{CambridgeUS}
+
+\title{IM1003: Programming Design, Spring 2017  \linebreak Lab 06}
+\author[bigelephant29]{Jhih-Bang Hsieh\linebreak \small{bigelephant29}}
+\institute{\textbf{National Taiwan University}}
+\date{}
+
+\usefonttheme{serif}
+\usepackage{xeCJK} 
+\usepackage{fontspec}
+\setCJKmainfont{DFPHeiMedium-B5}
+
+\usepackage{graphicx}
+\graphicspath{{/}}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  language=C++,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\linespread{0.6}\scriptsize\ttfamily},
+  numbers=left,
+  firstnumber=1,
+  numberfirstline=true,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  xleftmargin=4em
+}
+
+\makeatletter
+\setbeamertemplate{footline}{%
+    \leavevmode%
+    \hbox{%
+        \begin{beamercolorbox}[wd=.8\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+            \usebeamerfont{title in head/foot}\insertshorttitle
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+            \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+            \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+        \end{beamercolorbox}}%
+        \vskip0pt%
+    }
+\makeatother
+
+\begin{document}
+
+% First Page
+\begin{frame}
+  \maketitle
+\end{frame}
+
+% Outline Page
+\begin{frame}{Outline}
+  \begin{itemize}
+    \item Introduction to competitive programming
+    \item Online Programming Competitions
+    \item Practice
+  \end{itemize}
+\end{frame}
+
+% Section 1: Introduction to competitive programming
+\section{Competitive Programming}
+\subsection{ACM-ICPC}
+\begin{frame}{ACM-ICPC}
+  \begin{itemize}
+    \item ACM-ICPC 國際大學生程序設計競賽
+    \item International Collegiate Programming Contest
+    \item 主要以演算法、資料結構解題為主。
+    \item 形式就像大家的作業那樣。
+    \item 比賽時間五小時，有氣球、點心。
+    \item 國內很多大學開設「競技程式設計」課程培養選手。
+    \item 臺大拿了三次金牌。
+  \end{itemize}  
+  \begin{center}
+    \includegraphics[height=5em]{image/icpc.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}{ACM-ICPC 賽制}
+  \begin{itemize}
+    \item 時限五小時，總共有 10 到 15 題。
+    \item 三人一隊，只有一台電腦。
+    \item 可攜帶 25 頁單面印刷 A4 參考資料。（Codebook）
+    \item 通常會跨用餐時間，所以會有大量點心！
+    \item 每解一題就有一顆氣球，每道題目都有不同顏色的氣球。
+    \item 首先比解題數，再比用時，最後比上傳的時間點。
+    \item 所有通過的題目裡面，錯誤的嘗試每次扣 20 分鐘。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{ACM-ICPC 賽制}
+  \begin{itemize}
+    \item 下半年（上學期）於各地舉行區域賽（regional）。
+    \item 於個區域賽取得 World Final Slot 者，可由學校推派至世界大賽。
+    \item 一校至多一隊，於隔年上半年舉行。
+    \item 一個賽區的 Slot 大概一至三張，視報名隊伍以及國內外隊伍比例決定。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{台大 ACM-ICPC 資格}
+  \begin{itemize}
+    \item \href{http://acm.csie.org/ntujudge/index.php}{\underline{NTU Online Judge}}
+    \item 每年七月初報名，七月中考試。
+    \item 完成課前作業獲得滿分者，或通過個人預賽門檻者，進入團體預賽。
+    \item 一至二週組隊時間，進行團體預賽。
+    \item 通過團體預賽者進入 ACM 培訓班，每次可領三學分，至多領六學分。
+    \item 從八月開始一直到十二月，每週六練習五小時。
+    \item 每週有難到炸開的作業十題。
+    \item 團體排名賽中獲得前幾名的隊伍可以拿補助出國征戰區域賽！
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{台大 ACM-ICPC 資格}
+  \begin{itemize}
+    \item 台大會去的賽區：台灣、日本、南韓、越南、泰國、印尼、新加坡、孟加拉。
+    \item 有些賽區不會每年都有。
+  \end{itemize}
+\end{frame}
+
+\subsection{大甲賽}
+\begin{frame}{大甲賽}
+  \begin{itemize}
+    \item 大甲 = 大專甲組
+    \item 需要額外選拔校隊的比賽。
+    \item 每年十月左右選拔，十一月左右出隊。
+    \item 整個 ACM 培訓班都會參加預賽。
+    \item 比賽結果會影響到 ACM-ICPC 國內賽區的出隊數量。
+    \item 預賽可「免費」「自由報名」，可以吃好吃的餐盒。
+    \item 可以去嚐嚐被培訓班揍歪的感覺，台大校隊很強！
+  \end{itemize}
+\end{frame}
+
+\subsection{PDAO}
+\begin{frame}{NTUIM PDAO}
+  \begin{itemize}
+    \item 資管系的比賽！
+    \item 兩年前第一次舉辦，時間在五月中。
+    \item 有點心、有氣球，而且獎品還不錯！
+    \item 聽說今年要辦（？）不過還沒確定
+    \item 第一屆的考古題在 PDOGS 上面看得到喔！
+  \end{itemize}
+\end{frame}
+
+\subsection{how to practice}
+\begin{frame}{練習資源}
+  \begin{itemize}
+    \item AtCoder
+    \item CodeForces
+    \item LeetCode
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{AtCoder}
+  \begin{itemize}
+    \item url: \href{https://atcoder.jp/}{\underline{AtCoder}}
+    \item 日本的 Judge，去年暑假才開放給外國人使用。
+    \item 過去會幫日本國內舉辦比賽。
+    \item 幾乎週週有比賽，有新手向的分區。
+    \item 比賽時間很友善，大部份是台灣時間晚上八點到十點。
+    \item 概念就跟 LOL 差不多，可以爬分。（還會分段位）
+    \item 所有人的程式碼都公開，可以觀摩別人的寫法。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{CodeForces}
+  \begin{itemize}
+    \item url: \href{http://codeforces.com/}{\underline{CodeForces}}
+    \item 俄羅斯的 Judge，主流 Judge 中歷史悠久。
+    \item 比賽時間、日期都比較不固定，但會主動寄信通知。
+    \item 比賽時間大多不友善，通常半夜十二點半開始。
+    \item 一樣可以爬分，而且比 AtCoder 難爬。
+    \item 偶爾會有徵才賽、贊助商賽等，蠻有趣的。
+    \item 所有人程式碼一樣公開！
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{LeetCode}
+  \begin{itemize}
+    \item url: \href{https://leetcode.com/}{\underline{LeetCode}}
+    \item 所有題目都是各大公司的面試題。
+    \item 每道題目都會要求你寫一個 Function。
+    \item 題目假設比較模糊一點（畢竟面試也是這樣）。
+    \item 以練習來說，不太算是一個很好的平台。
+    \item 模擬面試實戰經驗倒是一個不錯的選擇！
+  \end{itemize}
+\end{frame}
+
+\section{Online Programming Contest}
+\begin{frame}{Online Programming Contest}
+  \begin{itemize}
+    \item Facebook Hacker Cup
+    \item Google Code Jam 與它的快樂好夥伴們
+  \end{itemize}
+\end{frame}
+
+\subsection{Facebook Hacker Cup}
+\begin{frame}{Facebook Hacker Cup}
+  \begin{itemize}
+    \item url: \href{https://www.facebook.com/hackercup/}{\underline{Facebook Hacker Cup}}
+    \item Facebook 辦的比賽，在一月中。
+    \item 2017 賽制技能樹：
+      \begin{itemize}
+        \item 資格賽（答對至少一題晉級）
+        \item Round 1（答對至少 35 分晉級）
+        \item Round 2（前兩百名晉級，前五百名拿到紀念 T-shirt）
+        \item Round 3（前 25 名晉級決賽）
+        \item World Final
+      \end{itemize}
+    \item 資格賽進行三天，Round 1 進行一天，Round 2 開始限時三小時。
+    \item 每道題目只有一次機會，啟動機會後會獲得測試資料。
+    \item 啟動後六分鐘內不限次數上傳，以最後一次上傳計分。
+    \item 很容易爆炸的比賽，而且題目很難。
+  \end{itemize}
+\end{frame}
+
+\subsection{Google Code Jam}
+\begin{frame}{Google Code Jam}
+  \begin{itemize}
+    \item url: \href{https://code.google.com/codejam/}{\underline{Google Code Jam}}
+    \item Google 的一個團隊，最大的比賽就是 Code Jam。
+    \item Code Jam 比賽時間從四月一路比到六月，總決賽在七、八月。
+    \item 2017 賽制技能樹：
+      \begin{itemize}
+        \item 資格賽（答對指定分數晉級，比賽開始公告分數）
+        \item Round 1A、Round 1B、Round 1C（前一千名晉級）
+        \item Round 2（前五百名晉級，前一千名拿到紀念 T-shirt）
+        \item Round 3（前 25 名晉級）
+        \item World Final
+      \end{itemize}
+    \item 資格賽進行 27 小時，Round 1 開始限時三小時。
+    \item 大部分題目分成 Small / Large 兩種 case。
+    \item 通過每一道題目的 Small 才可以挑戰 Large。
+    \item 開始挑戰後八分鐘內不限次數上傳，以最後一次上傳計分。
+    \item Small 不限挑戰次數，錯誤的挑戰在答對該題後會轉成罰分。
+  \end{itemize}
+\end{frame}
+
+\subsection{Practice}
+\begin{frame}{Google Code Jam 2014 Qualification Round}
+  url: \href{https://code.google.com/codejam/contest/2974486/dashboard}{\underline{GCJ 2014 Qualification}}
+\end{frame}
+
+\end{document}
