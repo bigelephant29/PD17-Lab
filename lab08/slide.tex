@@ -1,0 +1,196 @@
+\documentclass[t]{beamer}
+
+\usetheme{CambridgeUS}
+
+\title{IM1003: Programming Design, Spring 2017  \linebreak Lab 08}
+\author[bigelephant29]{Jhih-Bang Hsieh\linebreak \small{bigelephant29}}
+\institute{\textbf{National Taiwan University}}
+\date{}
+
+\usefonttheme{serif}
+\usepackage{xeCJK} 
+\usepackage{fontspec}
+\setCJKmainfont{DFPHeiMedium-B5}
+
+\usepackage{graphicx}
+\graphicspath{{/}}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  language=C++,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\linespread{0.6}\scriptsize\ttfamily},
+  numbers=left,
+  firstnumber=1,
+  numberfirstline=true,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  xleftmargin=4em
+}
+
+\makeatletter
+\setbeamertemplate{footline}{%
+    \leavevmode%
+    \hbox{%
+        \begin{beamercolorbox}[wd=.8\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+            \usebeamerfont{title in head/foot}\insertshorttitle
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+            \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+            \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+        \end{beamercolorbox}}%
+        \vskip0pt%
+    }
+\makeatother
+
+\begin{document}
+
+% First Page
+\begin{frame}
+  \maketitle
+\end{frame}
+
+% Outline Page
+\begin{frame}{Outline}
+  \begin{itemize}
+    \item Bitwise operation
+    \item Practice
+  \end{itemize}
+\end{frame}
+
+\section{Bitwise Operation}
+\begin{frame}{Bitwise Operation}
+  \begin{itemize}
+    \item 在電腦的世界裡，所有的數字都是二進位。
+    \item 對電腦來說，如果我們可以直接用二進位運算，效率很高。
+    \item $(1234)_{10} = (10011010010)_{2}$
+    \item 常用的 Operator：
+      \begin{itemize}
+        \item Left Shift $<<$
+        \item Right Shift $>>$
+        \item AND $\&$
+        \item OR $|$
+        \item XOR $\textasciicircum$
+        \item NOT $\sim$
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Left Shift}
+\begin{frame}{Left Shift $<<$}
+  \begin{itemize}
+    \item 在二進位下，將某數加上 k 位。
+    \item $1234\ <<\ 2 = 4936$
+    \item $(1234)_{10} = (10011010010)_{2}$
+    \item $(4936)_{10} = (1001101001000)_{2}$
+    \item 相當於某數乘上 $2^{k}$。
+    \item 高位溢位自動消失。
+  \end{itemize}
+\end{frame}
+
+\subsection{Right Shift}
+\begin{frame}{Right Shift $>>$}
+  \begin{itemize}
+    \item 在二進位下，將某數去掉末 k 位。
+    \item $1234\ >>\ 2 = 308$
+    \item $(1234)_{10} = (10011010010)_{2}$
+    \item $(308)_{10} = (100110100)_{2}$
+    \item 相當於某數除以 $2^{k}$。
+    \item 低位自動消失。
+  \end{itemize}
+\end{frame}
+
+\subsection{AND}
+\begin{frame}{AND $\&$}
+  \begin{itemize}
+    \item 在二進位下，取兩者皆 1 則 1，否則為 0。
+    \item $1234\ \&\ 147 = 146$
+    \item $(1234)_{10} = (10011010010)_{2}$
+    \item $(147)_{10} = (10010011)_{2}$
+    \item $(146)_{10} = (10010010)_{2}$
+  \end{itemize}
+\end{frame}
+
+\subsection{OR}
+\begin{frame}{OR $|$}
+  \begin{itemize}
+    \item 在二進位下，取兩者皆 0 則 0，否則為 1。
+    \item $1234\ |\ 147 = 1235$
+    \item $(1234)_{10} = (10011010010)_{2}$
+    \item $(147)_{10} = (10010011)_{2}$
+    \item $(1235)_{10} = (10011010011)_{2}$
+  \end{itemize}
+\end{frame}
+
+\subsection{XOR}
+\begin{frame}{XOR $\textasciicircum$}
+  \begin{itemize}
+    \item 在二進位下，取兩者相異為 1，否則為 0。
+    \item $1234\ \textasciicircum\ 147 = 1089$
+    \item $(1234)_{10} = (10011010010)_{2}$
+    \item $(147)_{10} = (10010011)_{2}$
+    \item $(1089)_{10} = (10001000001)_{2}$
+  \end{itemize}
+\end{frame}
+
+\subsection{NOT}
+\begin{frame}{NOT $\sim$}
+  \begin{itemize}
+    \item 在二進位下，0 變 1，1 變 0。
+    \item $\sim 1234 = -1235$
+    \item $(1234)_{10} = (10011010010)_{2}$
+    \item $(-1235)_{10} = (11111111111111111111101100101101)_{2}$
+  \end{itemize}
+\end{frame}
+
+\subsection{技巧}
+\begin{frame}{交換兩數}
+  \begin{itemize}
+    \item a\ \textasciicircum=\ b\ \textasciicircum=\ a\ \textasciicircum=\ b
+    \item 這樣其實很慢。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{奇偶}
+  \begin{itemize}
+    \item n\ \&\ 1
+    \item 意思跟 n \% 2 一樣
+    \item 注意 \& 運算的優先序，很容易出事
+  \end{itemize}
+\end{frame}
+
+\section{Practice}
+\begin{frame}{*Practice K - Lowbit}
+  給一個正整數 $N$，輸出 $N$ 在二進位下的最小位數（以 2 的冪次輸出）。\\
+  例如：$72$ 轉成二進位是 $1001000$，故輸出 $8$（$1000$）。
+\end{frame}
+
+\begin{frame}{Practice L}
+  給一個長度為 $N$ 的數列，輸出整個數列 XOR 的值。\\
+  範例輸入：\\
+  $5$\\
+  $1\ 2\ 3\ 5\ 8$\\
+  範例輸出：\\
+  $13$
+\end{frame}
+
+\begin{frame}{*Practice M - Switches}
+  給 $N$ 個關著的開關，開關只有開與關兩種狀態。\\
+  接著給一個數列，數列中的每一項代表將一個開關轉換狀態（開變關、關變開）。\\
+  保證數列長度是奇數，並且最後只剩下一個開著的開關。\\
+  請輸出剩下開著的開關編號。
+\end{frame}
+
+\end{document}
